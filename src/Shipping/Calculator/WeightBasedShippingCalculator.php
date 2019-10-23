@@ -17,6 +17,7 @@ final class WeightBasedShippingCalculator implements CalculatorInterface
         /** @var CoreShipmentInterface|ShipmentInterface $subject */
         Assert::isInstanceOf($subject, CoreShipmentInterface::class);
 
+        VarDumper::dump($configuration);
         $items = $subject->getOrder()->getItems();
         $price = 0;
 

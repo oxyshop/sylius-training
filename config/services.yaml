@@ -33,7 +33,7 @@ services:
         tags:
             - { name: sylius.context.channel, priority: 0 }
 
-    App\Form\Type\WeightBaseShippingCalculatorConfiguration:
+    App\Form\Type\WeightBasedShippingCalculatorConfiguration:
         tags:
             - { name: form.type }
 
@@ -43,4 +43,4 @@ services:
                 name: sylius.shipping_calculator
                 label: Weight based calculator
                 calculator: weight_type_rate
-                form_type: App\Form\Type\WeightBaseShippingCalculatorConfiguration
+                form_type: App\Form\Type\ChannelAwareWeightBasedShippingCalculatorConfigurationType
