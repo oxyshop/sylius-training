@@ -6,8 +6,18 @@ app_store:
     resource: |
         alias: app.store
         section: admin
-        except: ['show']
+        except: ['show', 'update']
         redirect: update
         templates: "@SyliusAdmin//Crud"
     type: sylius.resource
     prefix: /admin
+
+app_admin_store_update:
+    path: '/admin/stores/{id}/edit'
+    methods: ['GET', 'PUT', 'PATCH']
+    defaults:
+        _controller: app.controller.store:updateAction
+        _sylius:
+            section: admin
+            redirect: app_admin_store_index
+            template: '@SyliusAdmin\Crud\update.html.twig'
