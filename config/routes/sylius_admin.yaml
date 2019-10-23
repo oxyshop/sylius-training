@@ -9,6 +9,7 @@ app_store:
         except: ['show', 'update']
         redirect: update
         templates: "@SyliusAdmin//Crud"
+        grid: app_admin_store
     type: sylius.resource
     prefix: /admin
 

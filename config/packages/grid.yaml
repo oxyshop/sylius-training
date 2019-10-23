@@ -1,0 +1,28 @@
+sylius_grid:
+    grids:
+        app_admin_store:
+            driver:
+                options:
+                    class: "%app.model.store.class%"
+            fields:
+                id:
+                    type: string
+                    label: sylius.ui.id
+                code:
+                    type: string
+                name:
+                    type: string
+                email:
+                    type: string
+            actions:
+                main:
+                    create:
+                        type: create
+                        options:
+                            link:
+                                route: app_admin_store_create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
