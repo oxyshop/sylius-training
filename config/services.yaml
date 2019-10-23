@@ -32,3 +32,15 @@ services:
         arguments: ['@sylius.context.customer', '@sylius.repository.channel']
         tags:
             - { name: sylius.context.channel, priority: 0 }
+
+    App\Form\Type\WeightBaseShippingCalculatorConfiguration:
+        tags:
+            - { name: form.type }
+
+    App\Shipping\Calculator\WeightBasedShippingCalculator:
+        tags:
+            -
+                name: sylius.shipping_calculator
+                label: Weight based calculator
+                calculator: weight_type_rate
+                form_type: App\Form\Type\WeightBaseShippingCalculatorConfiguration
