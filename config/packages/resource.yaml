@@ -1,0 +1,5 @@
+sylius_resource:
+    resources:
+        app.store:
+            classes:
+                model: App\Entity\Store
