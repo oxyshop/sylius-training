@@ -49,3 +49,10 @@ services:
         arguments: ['@sylius.email_sender']
         tags:
             - { name: kernel.event_listener, event: sylius.product_review.post_update }
+
+    App\Form\Type\StoreType:
+        arguments:
+            - '%app.model.store.class%'
+            - ['sylius']
+        tags:
+            - { name: form.type, alias: App\Form\Type\StoreType }

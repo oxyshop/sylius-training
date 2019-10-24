@@ -43,6 +43,9 @@ sylius_grid:
                     options:
                         template: '/Admin/position.html.twig'
                     label: app.ui.place
+                shippingMethod:
+                    type: string
+                    path: shippingMethod.name
             filters:
                 search:
                     type: string

@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Shipping\ShippingMethod;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_store")
  */
-class Store implements ResourceInterface
+class Store implements ResourceInterface, CodeAwareInterface
 {
     /**
      * @ORM\Id
@@ -45,6 +47,12 @@ class Store implements ResourceInterface
      * @var float|null
      */
     private $lon;
+
+    /**
+     * @var ShippingMethod|null
+     * @ORM\ManyToOne(targetEntity="Sylius\Component\Shipping\Model\ShippingMethodInterface", inversedBy="stores")
+     */
+    private $shippingMethod;
 
     public function getId(): ?int
     {
@@ -104,5 +112,15 @@ class Store implements ResourceInterface
     public function setLon(?float $lon): void
     {
         $this->lon = $lon;
+    }
+
+    public function getShippingMethod(): ?ShippingMethod
+    {
+        return $this->shippingMethod;
+    }
+
+    public function setShippingMethod(?ShippingMethod $shippingMethod): void
+    {
+        $this->shippingMethod = $shippingMethod;
     }
 }

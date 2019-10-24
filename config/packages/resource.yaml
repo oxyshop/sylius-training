@@ -3,3 +3,4 @@ sylius_resource:
         app.store:
             classes:
                 model: App\Entity\Store
+                form: App\Form\Type\StoreType
