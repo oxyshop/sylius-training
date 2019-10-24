@@ -10,3 +10,14 @@ winzou_state_machine:
                     on: ['accept']
                     do: ['App\Checker\TrustedAuthorChecker', 'check']
                     args: ['object']
+    sylius_order_checkout:
+        transitions:
+            select_shipment_and_payment:
+                from: [cart, addressed, shipping_selected, shipping_skipped, payment_selected, payment_skipped]
+                to: payment_selected
+        callbacks:
+            after:
+                sylius_process_cart:
+                    on: ["select_shipping", "address", "select_payment", "skip_shipping", "skip_payment", "select_shipment_and_payment"]
+                    do: ["@sylius.order_processing.order_processor", "process"]
+                    args: ["object"]

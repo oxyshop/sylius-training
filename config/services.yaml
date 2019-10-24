@@ -76,3 +76,10 @@ services:
 
     App\Checker\TrustedAuthorChecker:
         public: true
+
+    App\Form\Type\SelectShippingAndPaymentType:
+        arguments:
+            - '%sylius.model.order.class%'
+            - ['sylius']
+        tags:
+            - { name: form.type, alias: App\Form\Type\SelectShippingAndPaymentType }

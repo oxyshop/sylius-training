@@ -12,3 +12,24 @@ sylius_shop_default_locale:
     methods: [GET]
     defaults:
         _controller: sylius.controller.shop.locale_switch:switchAction
+
+
+app_shop_checkout_shipment_and_payment:
+    path: /{locale}/checkout/select-shipping-and-payment
+    methods: [GET, PUT]
+    defaults:
+        _controller: sylius.controller.order:updateAction
+        _sylius:
+            event: shipment_and_payment
+            flash: false
+            redirect: sylius_shop_checkout_complete
+            template: "Shop/Checkout/selectShippingAndPayment.html.twig"
+            form:
+                type: App\Form\Type\SelectShippingAndPaymentType
+            repository:
+                method: findCartForSelectingShipping
+                arguments:
+                    - "expr:service('sylius.context.cart').getCart().getId()"
+            state_machine:
+                graph: sylius_order_checkout
+                transition: select_shipment_and_payment
