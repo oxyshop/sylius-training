@@ -44,3 +44,8 @@ services:
                 label: Weight based calculator
                 calculator: weight_type_rate
                 form_type: App\Form\Type\ChannelAwareWeightBasedShippingCalculatorConfigurationType
+
+    App\EventListener\ReviewAcceptedSender:
+        arguments: ['@sylius.email_sender']
+        tags:
+            - { name: kernel.event_listener, event: sylius.product_review.post_update }

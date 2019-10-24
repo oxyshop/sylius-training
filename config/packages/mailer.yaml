@@ -1,0 +1,5 @@
+sylius_mailer:
+    emails:
+        app_review_accepted:
+            subject: app.product_review.changed
+            template: 'Admin/Emails/productReviewAccepted.html.twig'

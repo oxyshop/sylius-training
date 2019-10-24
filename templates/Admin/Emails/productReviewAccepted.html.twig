@@ -1,0 +1,12 @@
+{% block subject %}
+    Your review has been accepted
+{% endblock %}
+
+{% block body %}
+    {% autoescape %}
+        Hello {{ review.author.firstName }}!
+        <br/>
+        Your review has been accepted.
+        <br/>
+    {% endautoescape %}
+{% endblock %}
