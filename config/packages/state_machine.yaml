@@ -1,0 +1,6 @@
+winzou_state_machine:
+    sylius_product_review:
+        transitions:
+            accept_again:
+                from: ['rejected']
+                to: accepted

@@ -1,19 +1,54 @@
 sylius_grid:
     grids:
+        sylius_admin_product_review:
+            actions:
+                item:
+                    accept_again:
+                        type: apply_transition
+                        icon: checkmark
+                        label: app.ui.accept_again
+                        options:
+                            class: green
+                            transition: accept_again
+                            graph: sylius_product_review
+                            link:
+                                route: app_admin_product_review_accept_again
+                                parameters:
+                                    id: resource.id
         app_admin_store:
             driver:
                 options:
                     class: "%app.model.store.class%"
+            sorting:
+                name: asc
             fields:
                 id:
                     type: string
                     label: sylius.ui.id
                 code:
+                    sortable: ~
                     type: string
+                    label: sylius.ui.code
                 name:
+                    sortable: ~
                     type: string
+                    label: sylius.ui.name
                 email:
                     type: string
+                    label: sylius.ui.email
+                place:
+                    sortable: lat
+                    type: twig
+                    path: .
+                    options:
+                        template: '/Admin/position.html.twig'
+                    label: app.ui.place
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code, name]
             actions:
                 main:
                     create:

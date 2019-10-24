@@ -22,3 +22,14 @@ app_admin_store_update:
             section: admin
             redirect: app_admin_store_index
             template: '@SyliusAdmin\Crud\update.html.twig'
+
+app_admin_product_review_accept_again:
+    path: '/admin/product-reviews/{id}/accept-again'
+    methods: ['PUT']
+    defaults:
+        _controller: sylius.controller.product_review:applyStateMachineTransitionAction
+        _sylius:
+            section: admin
+            state_machine:
+                transition: accept_again
+                graph: sylius_product_review
