@@ -60,3 +60,11 @@ services:
     App\Form\Extension\ShippingMethodTypeExtension:
         tags:
             - { name: form.type_extension, class: Sylius\Bundle\ShippingBundle\Form\Type\ShippingMethodType }
+
+    app.inject_form.shipping_method:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - 'Admin\_injectedForm.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.shipping_method.update.form, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.shipping_method.create.form, method: onBlockEvent }
