@@ -68,3 +68,11 @@ services:
         tags:
             - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.shipping_method.update.form, method: onBlockEvent }
             - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.shipping_method.create.form, method: onBlockEvent }
+
+    App\EventListener\AutomaticReviewApproval:
+        arguments: ['@sm.factory', '@sylius.manager.product_review']
+        tags:
+            - { name: kernel.event_listener, event: sylius.product_review.post_create, method: __invoke }
+
+    App\Checker\TrustedAuthorChecker:
+        public: true

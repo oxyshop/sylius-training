@@ -4,3 +4,9 @@ winzou_state_machine:
             accept_again:
                 from: ['rejected']
                 to: accepted
+        callbacks:
+            guard:
+                protectAccept:
+                    on: ['accept']
+                    do: ['App\Checker\TrustedAuthorChecker', 'check']
+                    args: ['object']
