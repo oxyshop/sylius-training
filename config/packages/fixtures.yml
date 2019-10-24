@@ -1,0 +1,55 @@
+sylius_fixtures:
+    suites:
+        custom:
+            listeners:
+                orm_purger: ~
+                logger: ~
+            fixtures:
+                locale:
+                    options:
+                        locales: ['en_US', 'cs_CZ']
+                currency:
+                    options:
+                        currencies: ['USD', 'CZK']
+                geographical:
+                    options:
+                        countries: ['CZ']
+                        zones:
+                            cz_zone:
+                                name: 'Czech zone'
+                                countries:
+                                    - 'CZ'
+
+                admin_user:
+                    name: 'admin_user'
+                    options:
+                        custom:
+                            -   email: 'sylius@example.com'
+                                username: 'sylius'
+                                password: 'sylius'
+                                enabled: true
+                                locale_code: '%locale%'
+                                first_name: 'John'
+                                last_name: 'Doe'
+
+                channel:
+                    options:
+                        custom:
+                            us_web_store:
+                                name: 'US Web Store'
+                                code: 'FASHION_WEB'
+                                locales:
+                                    - 'cs_CZ'
+                                currencies:
+                                    - 'CZK'
+                                enabled: true
+                                hostname: 'localhost'
+                                shop_billing_data:
+                                    company: 'Sylius'
+                                    tax_id: '0001112222'
+                                    country_code: 'CZ'
+                                    street: 'Test St. 15'
+                                    city: 'eCommerce Town'
+                                    postcode: '00 33 22'
+
+
