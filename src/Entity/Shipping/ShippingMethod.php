@@ -32,4 +32,14 @@ class ShippingMethod extends BaseShippingMethod
     {
         return new ShippingMethodTranslation();
     }
+
+    public function getStores(): Collection
+    {
+        return $this->stores;
+    }
+
+    public function setStores(Collection $stores): void
+    {
+        $this->stores = $stores;
+    }
 }

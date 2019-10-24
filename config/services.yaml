@@ -56,3 +56,7 @@ services:
             - ['sylius']
         tags:
             - { name: form.type, alias: App\Form\Type\StoreType }
+
+    App\Form\Extension\ShippingMethodTypeExtension:
+        tags:
+            - { name: form.type_extension, class: Sylius\Bundle\ShippingBundle\Form\Type\ShippingMethodType }
