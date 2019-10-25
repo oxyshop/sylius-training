@@ -1,0 +1,13 @@
+{
+  "name": "oxy/AndrewTheme",
+  "authors": [
+    {
+      "name": "Andrew"
+    }
+  ],
+  "extra": {
+    "sylius-theme": {
+      "title": "Andrew Theme"
+    }
+  }
+}
