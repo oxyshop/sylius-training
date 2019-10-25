@@ -18,7 +18,7 @@ class PaymentMethod extends BasePaymentMethod
      * @var int|null
      * @ORM\Column(type="integer")
      */
-    private $fee;
+    private $fee = 0;
 
     public function getFee(): ?int
     {

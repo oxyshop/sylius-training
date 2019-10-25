@@ -122,3 +122,9 @@ services:
         arguments: ['@sylius.factory.order_item', '@sylius.repository.product', '@sylius.order_item_quantity_modifier']
         tags:
             - { name: sylius.promotion_action, type: 'free_item', label: 'Free item', form_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    App\EventListener\CheckoutStateResolverListener:
+        arguments: ['@sylius.state_resolver.order_checkout']
+        tags:
+            - { name: kernel.event_listener, event: sylius.order_item.pre_recalculate_cart, method: onCartItemUpdate }
+            - { name: kernel.event_listener, event: sylius.order.pre_recalculate_cart, method: onCartUpdate }

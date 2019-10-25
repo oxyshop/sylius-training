@@ -33,3 +33,47 @@ app_shop_checkout_shipment_and_payment:
             state_machine:
                 graph: sylius_order_checkout
                 transition: select_shipment_and_payment
+
+
+sylius_shop_cart_save:
+    path: /
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: sylius.controller.order:saveAction
+        _sylius:
+            event: recalculate_cart
+            template: "@SyliusShop/Cart/summary.html.twig"
+            redirect: sylius_shop_cart_summary
+            form: Sylius\Bundle\OrderBundle\Form\Type\CartType
+            flash: sylius.cart.save
+
+sylius_shop_cart_item_remove:
+    path: /{id}/remove
+    methods: [DELETE]
+    defaults:
+        _controller: sylius.controller.order_item:removeAction
+        _sylius:
+            event: recalculate_cart
+            flash: sylius.cart.remove_item
+            redirect:
+                route: sylius_shop_cart_summary
+                parameters: {}
+
+sylius_shop_partial_cart_add_item:
+    path: /{_locale}/_partial/cart/add-item
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.order_item:addAction
+        _sylius:
+            event: recalculate_cart
+            template: $template
+            factory:
+                method: createForProduct
+                arguments: [expr:notFoundOnNull(service('sylius.repository.product').find($productId))]
+            form:
+                type: Sylius\Bundle\CoreBundle\Form\Type\Order\AddToCartType
+                options:
+                    product: expr:notFoundOnNull(service('sylius.repository.product').find($productId))
+            redirect:
+                route: sylius_shop_cart_summary
+                parameters: {}
