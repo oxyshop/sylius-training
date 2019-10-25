@@ -117,3 +117,8 @@ services:
         arguments: ['@sylius.repository.order']
         tags:
             - { name: sylius.promotion_rule_checker, type: 'amount_of_orders_in_time', label: 'Amount of orders in time', form_type: App\Form\Type\AmountOfOrdersInTimeRuleCheckerConfigurationType }
+
+    App\Promotion\Action\FreeGiftPromotionActionCommand:
+        arguments: ['@sylius.factory.order_item', '@sylius.repository.product', '@sylius.order_item_quantity_modifier']
+        tags:
+            - { name: sylius.promotion_action, type: 'free_item', label: 'Free item', form_type: Symfony\Component\Form\Extension\Core\Type\FormType }
