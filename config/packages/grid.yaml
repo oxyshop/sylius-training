@@ -15,6 +15,15 @@ sylius_grid:
                                 route: app_admin_product_review_accept_again
                                 parameters:
                                     id: resource.id
+        sylius_admin_payment_method:
+            fields:
+                fee:
+                    type: twig
+                    label: app.ui.fee
+                    options:
+                        template: 'Admin/Grid/Field/money.html.twig'
+                gateway:
+                    enabled: false
         app_admin_store:
             driver:
                 options:

@@ -69,6 +69,14 @@ services:
             - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.shipping_method.update.form, method: onBlockEvent }
             - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.shipping_method.create.form, method: onBlockEvent }
 
+    app.inject_form.payment_method:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - 'Admin\PaymentMethod\_injectedFeeForm.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.payment_method.update.form, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.payment_method.create.form, method: onBlockEvent }
+
     App\EventListener\AutomaticReviewApproval:
         arguments: ['@sm.factory', '@sylius.manager.product_review']
         tags:

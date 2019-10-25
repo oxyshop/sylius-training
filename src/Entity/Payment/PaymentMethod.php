@@ -14,6 +14,22 @@ use Sylius\Component\Payment\Model\PaymentMethodTranslationInterface;
  */
 class PaymentMethod extends BasePaymentMethod
 {
+    /**
+     * @var int|null
+     * @ORM\Column(type="integer")
+     */
+    private $fee;
+
+    public function getFee(): ?int
+    {
+        return $this->fee;
+    }
+
+    public function setFee(?int $fee): void
+    {
+        $this->fee = $fee;
+    }
+
     protected function createTranslation(): PaymentMethodTranslationInterface
     {
         return new PaymentMethodTranslation();
