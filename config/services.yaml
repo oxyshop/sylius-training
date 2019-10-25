@@ -83,3 +83,24 @@ services:
             - ['sylius']
         tags:
             - { name: form.type, alias: App\Form\Type\SelectShippingAndPaymentType }
+
+    sylius.order_processing.order_adjustments_clearer:
+        # Due to the issues with doubled registered order processors, the autoconfiguration has to be turned off
+        autoconfigure: false
+        class: 'Sylius\Component\Core\OrderProcessing\OrderAdjustmentsClearer'
+        arguments:
+            - [!php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_SHIPPING_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_UNIT_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::SHIPPING_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::TAX_ADJUSTMENT,
+               'payment']
+        tags:
+            - { name: sylius.order_processor, priority: 60 }
+
+
+    App\OrderProcessing\PaymentFeeProcessor:
+        autoconfigure: false
+        tags:
+            - { name: sylius.order_processor, priority: 25 }
