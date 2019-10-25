@@ -112,3 +112,8 @@ services:
         autoconfigure: false
         tags:
             - { name: sylius.order_processor, priority: 25 }
+
+    App\Promotion\RuleChecker\AmountOfOrdersInTimePeriod:
+        arguments: ['@sylius.repository.order']
+        tags:
+            - { name: sylius.promotion_rule_checker, type: 'amount_of_orders_in_time', label: 'Amount of orders in time', form_type: App\Form\Type\AmountOfOrdersInTimeRuleCheckerConfigurationType }
