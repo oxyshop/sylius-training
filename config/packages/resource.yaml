@@ -4,3 +4,9 @@ sylius_resource:
             classes:
                 model: App\Entity\Store
                 form: App\Form\Type\StoreType
+
+sylius_order:
+    resources:
+        order:
+            classes:
+                repository: App\Repository\OrderRepository
